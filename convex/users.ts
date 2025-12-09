@@ -1,4 +1,30 @@
 import { mutation, query } from "./_generated/server";
+import { v } from "convex/values";
+
+// Create or get user with explicit args (for signup flow)
+export const createOrGetUser = mutation({
+  args: {
+    clerkId: v.string(),
+    email: v.string(),
+    name: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    const existingUser = await ctx.db
+      .query("users")
+      .withIndex("by_clerk_id", (q) => q.eq("clerkId", args.clerkId))
+      .first();
+
+    if (existingUser) {
+      return existingUser._id;
+    }
+
+    return await ctx.db.insert("users", {
+      clerkId: args.clerkId,
+      email: args.email,
+      name: args.name,
+    });
+  },
+});
 
 // Sync user from Clerk to Convex on login
 export const syncUser = mutation({

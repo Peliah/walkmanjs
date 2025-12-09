@@ -4,6 +4,8 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import ConvexClientProvider from "@/components/providers/convex-provider";
 import { UserSync } from "@/components/providers/user-sync";
+import { AuthDialogs } from "@/components/auth/auth-dialogs";
+import { Navbar } from "@/components/navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +34,8 @@ export default function RootLayout({
       >
         <ClerkProvider>
           <ConvexClientProvider>
+            <Navbar />
+            <AuthDialogs />
             <UserSync />
             {children}
           </ConvexClientProvider>
