@@ -8,7 +8,7 @@ import { useAuthDialogs } from "@/hooks"
 export function HeroSection() {
   const { openLogin, openSignup } = useAuthDialogs();
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+    <section id="hero-section" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* Animated background grid */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#e0e0e0_1px,transparent_1px),linear-gradient(to_bottom,#e0e0e0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
@@ -62,9 +62,20 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <Button onClick={openLogin} size="lg" className="group bg-[#FF6500] px-5 text-sm font-medium text-white hover:bg-[#FF6500]/90">
+          <Button id="get-started" onClick={openLogin} size="lg" className="group bg-[#FF6500] px-5 text-sm font-medium text-white hover:bg-[#FF6500]/90">
             Start Free Trial
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </Button>
+          <Button
+            id="launch-demo"
+            variant="outline"
+            size="lg"
+            className="group border-[#1E3E62]/30 text-[#0B192C] hover:bg-[#1E3E62]/10"
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            onClick={() => (window as any).WalkmanJS?.start()}
+          >
+            <Play className="mr-2 h-4 w-4 fill-current" />
+            Launch Demo
           </Button>
         </motion.div>
 

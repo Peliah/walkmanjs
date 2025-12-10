@@ -64,7 +64,20 @@ export function useEmailAuth() {
         return { success: true };
       }
 
-      return { error: 'Sign in incomplete' };
+      if (result.status === 'needs_first_factor') {
+        return { error: 'Invalid email or password' };
+      }
+
+      if (result.status === 'needs_second_factor') {
+        return { error: 'Two-factor authentication required', needs2FA: true };
+      }
+
+      if (result.status === 'needs_new_password') {
+        return { error: 'Please reset your password' };
+      }
+
+      console.log('Sign in status:', result.status);
+      return { error: 'Sign in could not be completed. Please try again.' };
     } catch (err: unknown) {
       const error = err as { errors?: { message: string }[] };
       return { error: error.errors?.[0]?.message || 'Sign in failed' };
