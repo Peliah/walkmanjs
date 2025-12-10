@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/navbar"
+import Script from "next/script"
 import { Footer } from "@/components/footer"
 import { HeroSection } from "@/components/landing/hero-section"
 import { FeaturesSection } from "@/components/landing/features-section"
@@ -19,6 +19,14 @@ export default function HomePage() {
         <CTASection />
       </main>
       <Footer />
+
+      {/* WalkmanJS Tour Widget */}
+      <Script
+        src="https://widget-walkman.netlify.app/tour.iife.js"
+        data-tour-id="jh7b39hwp8vec3rfg8w64fe2mx7x0gns"
+        data-api-key="wk_JgqtfM561DvlW6D3STqZ54uvu58sdNCs"
+        strategy="lazyOnload"
+      />
     </div>
   )
 }
