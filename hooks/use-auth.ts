@@ -64,7 +64,6 @@ export function useEmailAuth() {
         return { success: true };
       }
 
-      // Handle different incomplete statuses
       if (result.status === 'needs_first_factor') {
         return { error: 'Invalid email or password' };
       }
