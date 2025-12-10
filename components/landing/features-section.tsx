@@ -60,7 +60,7 @@ const itemVariants = {
 
 export function FeaturesSection() {
   return (
-    <section id="feature-section" className="py-24 bg-[#0B192C]">
+    <section className="py-24 bg-[#0B192C]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -86,6 +86,7 @@ export function FeaturesSection() {
         >
           {features.map((feature) => (
             <motion.div
+              id="feature-section"
               key={feature.title}
               variants={itemVariants}
               className="group relative p-6 rounded-xl border border-[#1E3E62]/50 bg-[#1E3E62]/20 hover:bg-[#1E3E62]/30 hover:border-[#FF6500]/30 transition-all duration-300"
