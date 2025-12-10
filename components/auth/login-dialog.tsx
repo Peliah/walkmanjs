@@ -65,10 +65,10 @@ export function LoginDialog() {
 
   return (
     <Dialog open={isLoginOpen} onOpenChange={handleOpenChange}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md font-sans">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold">Welcome back</DialogTitle>
-          <DialogDescription>
+          <DialogTitle className="text-2xl font-bold font-sans">Welcome back</DialogTitle>
+          <DialogDescription className="font-sans">
             Sign in to your account to continue
           </DialogDescription>
         </DialogHeader>
@@ -76,7 +76,7 @@ export function LoginDialog() {
         <div className="grid gap-6 py-4">
           <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" className="font-sans">Email</Label>
               <Input
                 id="email"
                 type="email"
@@ -92,7 +92,7 @@ export function LoginDialog() {
             </div>
 
             <div className="grid gap-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password" className="font-sans">Password</Label>
               <Input
                 id="password"
                 type="password"
@@ -121,12 +121,12 @@ export function LoginDialog() {
             </Button>
           </form>
 
-          <p className="text-muted-foreground text-center text-sm">
+          <p className="text-muted-foreground text-center text-sm font-sans">
             Don&apos;t have an account?{' '}
             <button
               type="button"
               onClick={switchToSignup}
-              className="text-primary hover:underline font-medium"
+              className="text-primary hover:underline font-medium font-sans"
             >
               Sign up
             </button>
