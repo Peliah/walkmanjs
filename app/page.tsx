@@ -22,8 +22,8 @@ export default function HomePage() {
 
       <Script
         src="https://widget-walkman.netlify.app/tour.iife.js"
-        data-tour-id="jh7b39hwp8vec3rfg8w64fe2mx7x0gns"
-        data-api-key="wk_JgqtfM561DvlW6D3STqZ54uvu58sdNCs"
+        data-tour-id="jh7cn0avk2azwewxg1pw0ypydd7x06hm"
+        data-api-key="wk_fMwVqvYhPTJ23wxlJ3hPS77x1RrpyodL"
         strategy="lazyOnload"
       />
     </div>

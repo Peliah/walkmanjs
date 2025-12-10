@@ -19,7 +19,7 @@ export function HeroSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
-          id="hero-section"
+          id="wjs-beta-badge"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -67,7 +67,7 @@ export function HeroSection() {
           className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <Button
-            id="get-started"
+            id="wjs-get-started"
             onClick={openLogin}
             size="lg"
             className="group bg-[#FF6500] px-6 text-sm font-medium text-white hover:bg-[#FF6500]/90 shadow-lg shadow-[#FF6500]/25"
@@ -76,7 +76,7 @@ export function HeroSection() {
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Button>
           <Button
-            id="launch-demo"
+            id="wjs-launch-demo"
             variant="outline"
             size="lg"
             className="group border-[#1E3E62]/30 text-[#0B192C] hover:bg-[#1E3E62]/5 hover:border-[#1E3E62]/50"

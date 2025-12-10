@@ -32,7 +32,7 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-[#1E3E62]/20 bg-[#FBFBFB] font-sans">
       <div className="mx-auto flex h-16  items-center justify-between px-6">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 lg:pl-8">
+        <Link href="/" id="wjs-logo" className="flex items-center gap-2 lg:pl-8">
           <span className="text-lg font-semibold text-[#0B192C]">
             WalkmanJS
           </span>
