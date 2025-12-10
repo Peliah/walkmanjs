@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-  "dev": "next dev",
-  "build": "cd widget && npm install && npm run build && cp dist/embed.js ../public/embed.js && cd .. && next build",
-  "start": "next start",
-  "lint": "next lint"
+  "build-widget": "cd widget && npm install && npm run build",
+  "copy-widget": "cp widget/dist/embed.js public/embed.js",
+  "build": "npm run build-widget && npm run copy-widget && next build",
+  "dev": "next dev"
 },
   "dependencies": {
     "@clerk/nextjs": "^6.36.1",
