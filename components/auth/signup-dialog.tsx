@@ -71,12 +71,12 @@ export function SignupDialog() {
 
   return (
     <Dialog open={isSignupOpen} onOpenChange={handleOpenChange}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md font-sans">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold">
+          <DialogTitle className="text-2xl font-bold font-sans">
             Create an account
           </DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="font-sans">
             Enter your details below to create your account
           </DialogDescription>
         </DialogHeader>
@@ -84,7 +84,7 @@ export function SignupDialog() {
         <div className="grid gap-6 py-4">
           <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="signup-email">Email</Label>
+              <Label htmlFor="signup-email" className="font-sans">Email</Label>
               <Input
                 id="signup-email"
                 type="email"
@@ -100,7 +100,7 @@ export function SignupDialog() {
             </div>
 
             <div className="grid gap-2">
-              <Label htmlFor="signup-password">Password</Label>
+              <Label htmlFor="signup-password" className="font-sans">Password</Label>
               <Input
                 id="signup-password"
                 type="password"
@@ -116,7 +116,7 @@ export function SignupDialog() {
             </div>
 
             <div className="grid gap-2">
-              <Label htmlFor="confirm-password">Confirm Password</Label>
+              <Label htmlFor="confirm-password" className="font-sans">Confirm Password</Label>
               <Input
                 id="confirm-password"
                 type="password"
@@ -148,12 +148,12 @@ export function SignupDialog() {
             </Button>
           </form>
 
-          <p className="text-muted-foreground text-center text-sm">
+          <p className="text-muted-foreground text-center text-sm font-sans">
             Already have an account?{' '}
             <button
               type="button"
               onClick={switchToLogin}
-              className="text-primary hover:underline font-medium"
+              className="text-primary hover:underline font-medium font-sans"
             >
               Sign in
             </button>
