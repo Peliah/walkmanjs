@@ -34,11 +34,13 @@ export function TourEditor({ tourId }: TourEditorProps) {
     <div className="flex flex-1 flex-col">
       <TourEditorHeader tour={tour} />
       <TourEditorTabs activeTab={activeTab} onTabChange={setActiveTab} />
-      <div className="flex-1 p-4 lg:p-6">
-        {activeTab === "steps" && <StepsTab tourId={tour._id} />}
-        {activeTab === "targeting" && <TargetingTab tour={tour} />}
-        {activeTab === "appearance" && <AppearanceTab tour={tour} />}
-        {activeTab === "install" && <InstallTab tour={tour} />}
+      <div className="flex flex-1 flex-col items-center p-4 lg:p-6">
+        <div className="w-full max-w-4xl">
+          {activeTab === "steps" && <StepsTab tourId={tour._id} />}
+          {activeTab === "targeting" && <TargetingTab tour={tour} />}
+          {activeTab === "appearance" && <AppearanceTab tour={tour} />}
+          {activeTab === "install" && <InstallTab tour={tour} />}
+        </div>
       </div>
     </div>
   );
