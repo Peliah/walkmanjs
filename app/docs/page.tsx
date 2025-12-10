@@ -85,19 +85,36 @@ const itemVariants = {
 
 export default function DocsPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#FBFBFB] font-sans">
       <main className="pt-24 pb-16">
         {/* Hero Section */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 relative">
+          {/* Background decoration */}
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute top-0 right-1/4 w-64 h-64 bg-[#FF6500]/5 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-[#1E3E62]/5 rounded-full blur-3xl" />
+          </div>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Documentation</h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Learn how to create and deploy interactive product tours on your website in minutes.
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF6500]/10 border border-[#FF6500]/20 mb-6"
+            >
+              <BookOpen className="w-4 h-4 text-[#FF6500]" />
+              <span className="text-sm font-medium text-[#FF6500]">Documentation</span>
+            </motion.div>
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-[#0B192C]">
+              Learn to build <span className="text-[#FF6500]">product tours</span>
+            </h1>
+            <p className="text-lg text-[#1E3E62]/70 max-w-2xl mx-auto">
+              Create and deploy interactive product tours on your website in minutes.
             </p>
           </motion.div>
         </section>
@@ -114,16 +131,18 @@ export default function DocsPage() {
               { title: "Quick Start", desc: "Get up and running in 5 minutes", icon: BookOpen },
               { title: "CSS Selectors", desc: "Learn how to target elements", icon: Target },
               { title: "API Reference", desc: "Programmatic tour control", icon: Code },
-            ].map((item, i) => (
+            ].map((item) => (
               <motion.div
                 key={item.title}
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="p-6 border border-border rounded-lg hover:border-foreground/20 transition-colors cursor-pointer group"
+                className="p-6 border border-[#1E3E62]/10 rounded-xl bg-white hover:border-[#FF6500]/30 hover:shadow-lg hover:shadow-[#FF6500]/5 transition-all cursor-pointer group"
               >
-                <item.icon className="w-6 h-6 mb-3 text-muted-foreground group-hover:text-foreground transition-colors" />
-                <h3 className="font-semibold mb-1">{item.title}</h3>
-                <p className="text-sm text-muted-foreground">{item.desc}</p>
+                <div className="w-10 h-10 rounded-lg bg-[#FF6500]/10 flex items-center justify-center mb-4 group-hover:bg-[#FF6500] transition-colors">
+                  <item.icon className="w-5 h-5 text-[#FF6500] group-hover:text-white transition-colors" />
+                </div>
+                <h3 className="font-semibold mb-1 text-[#0B192C]">{item.title}</h3>
+                <p className="text-sm text-[#1E3E62]/70">{item.desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -132,8 +151,8 @@ export default function DocsPage() {
         {/* Getting Started */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-12">
-            <h2 className="text-3xl font-bold tracking-tight mb-4">Getting Started</h2>
-            <p className="text-muted-foreground max-w-3xl">
+            <h2 className="text-3xl font-bold tracking-tight mb-4 text-[#0B192C]">Getting Started</h2>
+            <p className="text-[#1E3E62]/70 max-w-3xl">
               Follow these steps to create your first product tour. Each step includes a visual guide to help you
               navigate the dashboard.
             </p>
@@ -155,18 +174,18 @@ export default function DocsPage() {
                 {/* Content */}
                 <div className="flex-1 space-y-4">
                   <div className="flex items-center gap-3">
-                    <span className="flex items-center justify-center w-10 h-10 rounded-full bg-foreground text-background text-sm font-bold">
+                    <span className="flex items-center justify-center w-10 h-10 rounded-full bg-[#FF6500] text-white text-sm font-bold shadow-lg shadow-[#FF6500]/20">
                       {step.id}
                     </span>
-                    <step.icon className="w-5 h-5 text-muted-foreground" />
+                    <step.icon className="w-5 h-5 text-[#1E3E62]/50" />
                   </div>
-                  <h3 className="text-2xl font-bold">{step.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{step.description}</p>
+                  <h3 className="text-2xl font-bold text-[#0B192C]">{step.title}</h3>
+                  <p className="text-[#1E3E62]/70 leading-relaxed">{step.description}</p>
                 </div>
 
                 {/* Image */}
                 <motion.div whileHover={{ scale: 1.02 }} className="flex-1 w-full">
-                  <div className="relative aspect-video rounded-lg overflow-hidden border border-border shadow-lg">
+                  <div className="relative aspect-video rounded-xl overflow-hidden border border-[#1E3E62]/10 shadow-xl shadow-[#0B192C]/5">
                     <Image
                       src={step.image || "/placeholder.svg"}
                       alt={step.title}
@@ -186,9 +205,14 @@ export default function DocsPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-muted/50 border border-border rounded-lg p-8"
+            className="bg-[#1E3E62]/5 border border-[#1E3E62]/10 rounded-xl p-8"
           >
-            <h2 className="text-2xl font-bold mb-6">Pro Tips</h2>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-lg bg-[#FF6500] flex items-center justify-center">
+                <Palette className="w-5 h-5 text-white" />
+              </div>
+              <h2 className="text-2xl font-bold text-[#0B192C]">Pro Tips</h2>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
                 {
@@ -209,10 +233,10 @@ export default function DocsPage() {
                 },
               ].map((tip) => (
                 <div key={tip.title} className="flex gap-3">
-                  <ChevronRight className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" />
+                  <ChevronRight className="w-5 h-5 text-[#FF6500] shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="font-semibold mb-1">{tip.title}</h4>
-                    <p className="text-sm text-muted-foreground">{tip.desc}</p>
+                    <h4 className="font-semibold mb-1 text-[#0B192C]">{tip.title}</h4>
+                    <p className="text-sm text-[#1E3E62]/70">{tip.desc}</p>
                   </div>
                 </div>
               ))}
@@ -223,9 +247,14 @@ export default function DocsPage() {
         {/* Code Example */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="text-2xl font-bold mb-6">Installation Code</h2>
-            <div className="bg-foreground text-background rounded-lg p-6 overflow-x-auto">
-              <pre className="text-sm font-mono">
+            <h2 className="text-2xl font-bold mb-6 text-[#0B192C]">Installation Code</h2>
+            <div className="bg-[#0B192C] rounded-xl p-6 overflow-x-auto shadow-xl">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-3 h-3 rounded-full bg-[#FF6500]/60" />
+                <div className="w-3 h-3 rounded-full bg-[#1E3E62]" />
+                <div className="w-3 h-3 rounded-full bg-[#1E3E62]/50" />
+              </div>
+              <pre className="text-sm font-mono text-[#FBFBFB]">
                 <code>{`<!-- Add this script before the closing </body> tag -->
 <script 
   src="https://widget.walkmanjs.com/tour.js" 
@@ -233,7 +262,7 @@ export default function DocsPage() {
 ></script>`}</code>
               </pre>
             </div>
-            <p className="text-sm text-muted-foreground mt-4">
+            <p className="text-sm text-[#1E3E62]/70 mt-4">
               Replace YOUR_TOUR_ID with the ID from your Install tab. The script will automatically load and display
               your tour based on your targeting rules.
             </p>
