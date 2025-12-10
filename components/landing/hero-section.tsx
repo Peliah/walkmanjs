@@ -3,8 +3,10 @@
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Play } from "lucide-react"
+import { useAuthDialogs } from "@/hooks"
 
 export function HeroSection() {
+  const { openLogin, openSignup } = useAuthDialogs();
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* Animated background grid */}
@@ -60,13 +62,9 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <Button size="lg" className="group bg-primary hover:bg-primary/90 text-primary-foreground">
+          <Button onClick={openLogin} size="lg" className="group bg-[#FF6500] px-5 text-sm font-medium text-white hover:bg-[#FF6500]/90">
             Start Free Trial
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Button>
-          <Button size="lg" variant="outline" className="group border-border hover:bg-secondary bg-transparent">
-            <Play className="mr-2 h-4 w-4" />
-            Watch Demo
           </Button>
         </motion.div>
 
@@ -124,7 +122,7 @@ export function HeroSection() {
 
           {/* Glow effect */}
           <div className="absolute inset-0 -z-10 blur-3xl opacity-30">
-            <div className="absolute inset-0 bg-gradient-to-r from-foreground/20 via-transparent to-foreground/20" />
+            <div className="absolute inset-0 bg-linear-to-r from-foreground/20 via-transparent to-foreground/20" />
           </div>
         </motion.div>
       </div>

@@ -35,9 +35,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  Pricing
-                </Link>
+
               </li>
             </ul>
           </div>
@@ -50,29 +48,21 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  Blog
-                </Link>
+
               </li>
               <li>
-                <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  Careers
-                </Link>
+
               </li>
             </ul>
           </div>
           <div>
-            <h4 className="text-sm font-semibold mb-4">Legal</h4>
+
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  Privacy
-                </Link>
+
               </li>
               <li>
-                <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  Terms
-                </Link>
+
               </li>
             </ul>
           </div>

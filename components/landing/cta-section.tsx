@@ -3,8 +3,11 @@
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import { useAuthDialogs } from "@/hooks"
 
 export function CTASection() {
+  const { openLogin, openSignup } = useAuthDialogs();
+
   return (
     <section className="py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,16 +31,9 @@ export function CTASection() {
               Join teams creating amazing onboarding experiences. No credit card required.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" variant="secondary" className="group">
+              <Button onClick={openSignup} size="lg" variant="secondary" className="group cursor-pointer">
                 Start Free Trial
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="bg-transparent text-primary-foreground border-primary-foreground/30 hover:bg-primary-foreground/10"
-              >
-                Schedule Demo
               </Button>
             </div>
           </div>
