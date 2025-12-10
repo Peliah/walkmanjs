@@ -60,7 +60,7 @@ const itemVariants = {
 
 export function FeaturesSection() {
   return (
-    <section id="feature-section" className="py-24 bg-secondary/30">
+    <section id="feature-section" className="py-24 bg-[#0B192C]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -69,8 +69,10 @@ export function FeaturesSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">Everything you need to activate users</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 text-[#FBFBFB]">
+            Everything you need to activate users
+          </h2>
+          <p className="text-lg text-[#FBFBFB]/60 max-w-2xl mx-auto">
             Designed for developers, loved by product managers.
           </p>
         </motion.div>
@@ -80,22 +82,22 @@ export function FeaturesSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {features.map((feature) => (
             <motion.div
               key={feature.title}
               variants={itemVariants}
-              className="group relative p-6 rounded-xl border border-border bg-card hover:shadow-lg transition-shadow"
+              className="group relative p-6 rounded-xl border border-[#1E3E62]/50 bg-[#1E3E62]/20 hover:bg-[#1E3E62]/30 hover:border-[#FF6500]/30 transition-all duration-300"
             >
-              <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary text-primary-foreground">
+              <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg bg-[#FF6500] text-white">
                 <feature.icon className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-              <p className="text-muted-foreground">{feature.description}</p>
+              <h3 className="text-lg font-semibold mb-2 text-[#FBFBFB]">{feature.title}</h3>
+              <p className="text-[#FBFBFB]/60">{feature.description}</p>
 
               {/* Hover effect */}
-              <div className="absolute inset-0 rounded-xl border-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+              <div className="absolute inset-0 rounded-xl border-2 border-[#FF6500] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
             </motion.div>
           ))}
         </motion.div>
