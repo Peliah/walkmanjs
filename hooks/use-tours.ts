@@ -28,7 +28,7 @@ export function useTour(tourId: Id<"tours"> | undefined) {
   return {
     tour,
     isLoading: tour === undefined,
-    update: (data: Parameters<typeof updateTour>[0]) =>
+    update: (data: Omit<Parameters<typeof updateTour>[0], "tourId">) =>
       updateTour({ ...data, tourId: tourId! }),
   };
 }
