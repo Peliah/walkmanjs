@@ -4,12 +4,21 @@ import { useQuery, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 
+export interface ImportStep {
+  title: string;
+  content: string;
+  targetSelector: string;
+  position: "top" | "bottom" | "left" | "right";
+  order: number;
+}
+
 export function useSteps(tourId: Id<"tours"> | undefined) {
   const steps = useQuery(api.steps.list, tourId ? { tourId } : "skip");
   const createStep = useMutation(api.steps.create);
   const updateStep = useMutation(api.steps.update);
   const removeStep = useMutation(api.steps.remove);
   const reorderSteps = useMutation(api.steps.reorder);
+  const bulkImportSteps = useMutation(api.steps.bulkImport);
 
   return {
     steps,
@@ -20,6 +29,8 @@ export function useSteps(tourId: Id<"tours"> | undefined) {
     remove: removeStep,
     reorder: (stepIds: Id<"steps">[]) =>
       reorderSteps({ tourId: tourId!, stepIds }),
+    bulkImport: (importSteps: ImportStep[]) =>
+      bulkImportSteps({ tourId: tourId!, steps: importSteps }),
   };
 }
 

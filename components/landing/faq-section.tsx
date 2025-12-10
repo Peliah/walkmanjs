@@ -46,7 +46,7 @@ export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <section id="faq" className="py-20 px-6 bg-[#FBFBFB]">
+    <section id="wjs-faq-section" className="py-20 px-6 bg-[#FBFBFB]">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-[#0B192C] mb-4">Frequently Asked Questions</h2>
