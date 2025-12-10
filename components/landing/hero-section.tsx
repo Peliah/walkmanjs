@@ -71,6 +71,7 @@ export function HeroSection() {
             variant="outline"
             size="lg"
             className="group border-[#1E3E62]/30 text-[#0B192C] hover:bg-[#1E3E62]/10"
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onClick={() => (window as any).WalkmanJS?.start()}
           >
             <Play className="mr-2 h-4 w-4 fill-current" />
