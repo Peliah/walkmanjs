@@ -19,7 +19,7 @@ export function InstallTab({ tour }: InstallTabProps) {
     const [copiedKey, setCopiedKey] = useState(false);
     const [testMode, setTestMode] = useState(false);
 
-    const embedCode = `<script src="https://widget.walkmanjs.com/tour.js" data-tour-id="${tour._id}" data-api-key="${apiKey?.key || "YOUR_API_KEY"}"></script>`;
+    const embedCode = `<script src="https://widget-walkman.netlify.app/tour.iife.js" data-tour-id="${tour._id}" data-api-key="${apiKey?.key || "YOUR_API_KEY"}"></script>`;
 
     const handleCopy = async (text: string, setCopiedState: (v: boolean) => void) => {
         await navigator.clipboard.writeText(text);
