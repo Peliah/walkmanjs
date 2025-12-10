@@ -8,6 +8,10 @@
  * @module
  */
 
+import type * as analytics from "../analytics.js";
+import type * as apiKeys from "../apiKeys.js";
+import type * as steps from "../steps.js";
+import type * as tours from "../tours.js";
 import type * as users from "../users.js";
 
 import type {
@@ -17,6 +21,10 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  analytics: typeof analytics;
+  apiKeys: typeof apiKeys;
+  steps: typeof steps;
+  tours: typeof tours;
   users: typeof users;
 }>;
 
