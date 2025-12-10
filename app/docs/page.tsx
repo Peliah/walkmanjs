@@ -1,276 +1,188 @@
 "use client"
 
 import { motion } from "framer-motion"
-import Image from "next/image"
-import { Footer } from "@/components/footer"
-import { BookOpen, MousePointer, Target, Palette, Code, ChevronRight } from "lucide-react"
+import Link from "next/link"
+import { DocsBreadcrumb } from "@/components/docs/docs-breadcrumb"
+import { ArrowRight, BookOpen, Rocket, Code, Sparkles } from "lucide-react"
 
-const steps = [
+const quickLinks = [
   {
-    id: 1,
-    title: "Navigate to Tours",
-    description:
-      "From your dashboard, click on 'Tours' in the sidebar menu. If you haven't created any tours yet, you'll see an empty state with a 'Create Tour' button.",
-    image: "/images/tour1.png",
-    icon: BookOpen,
+    title: "Quick Start",
+    description: "Get your first tour running in under 5 minutes",
+    href: "/docs/quickstart",
+    icon: Rocket,
+    color: "bg-[#FF6500]",
   },
   {
-    id: 2,
-    title: "Create a New Tour",
-    description:
-      "Click the 'Create Tour' button to open the creation modal. Enter a name for your tour (e.g., 'Welcome Tour'), add an optional description, and specify your target website URL where the tour will run.",
-    image: "/images/tour2.png",
-    icon: MousePointer,
-  },
-  {
-    id: 3,
-    title: "Add Tour Steps",
-    description:
-      "After creating your tour, you'll be taken to the Steps tab. Click 'Add Step' to create individual tour steps. Each step requires a title, description, CSS selector (to target the element), and position. You need at least 5 steps to publish a tour.",
-    image: "/images/tour3.png",
-    icon: Target,
-  },
-  {
-    id: 4,
-    title: "Configure Your Steps",
-    description:
-      "For each step, provide a descriptive title, helpful content, the CSS selector of the target element (e.g., #signup-btn or .nav-menu), and choose where the tooltip should appear (Top, Bottom, Left, or Right).",
-    image: "/images/tour4.png",
-    icon: Target,
-  },
-  {
-    id: 5,
-    title: "Set Targeting Rules",
-    description:
-      "Navigate to the Targeting tab to configure when and where your tour appears. Set the URL match type (Contains, Exact, Regex), specify the URL pattern, choose a trigger (On Page Load, On Click, On Delay), and set the frequency (Once per user, Once per session, Every time).",
-    image: "/images/tour5.png",
-    icon: Target,
-  },
-  {
-    id: 6,
-    title: "Customize Appearance",
-    description:
-      "In the Appearance tab, customize how your tour looks. Set primary, background, and text colors using hex codes. Adjust the border radius, enable the overlay to dim the background, and set the overlay opacity. Preview your changes in real-time.",
-    image: "/images/tour6.png",
-    icon: Palette,
-  },
-  {
-    id: 7,
-    title: "Install on Your Website",
-    description:
-      "Finally, go to the Install tab to get your embed code. Copy the script tag and paste it before the closing </body> tag on your website. Generate an API key if needed, and use Test Mode to preview without affecting analytics. Set the tour status to 'Active' when ready.",
-    image: "/images/tour7.png",
+    title: "Installation",
+    description: "Add WalkmanJS to your website with a single script",
+    href: "/docs/installation",
     icon: Code,
+    color: "bg-[#1E3E62]",
+  },
+  {
+    title: "Core Concepts",
+    description: "Understand tours, steps, and targeting",
+    href: "/docs/tours",
+    icon: BookOpen,
+    color: "bg-[#0B192C]",
   },
 ]
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5 },
-  },
-}
+const features = [
+  "Visual tour builder — no code required",
+  "CSS selector targeting for any element",
+  "Customizable appearance and themes",
+  "Built-in analytics and tracking",
+  "Smart positioning and scroll handling",
+  "Keyboard navigation support",
+]
 
 export default function DocsPage() {
   return (
-    <div className="min-h-screen bg-[#FBFBFB] font-sans">
-      <main className="pt-24 pb-16">
-        {/* Hero Section */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 relative">
-          {/* Background decoration */}
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute top-0 right-1/4 w-64 h-64 bg-[#FF6500]/5 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-[#1E3E62]/5 rounded-full blur-3xl" />
+    <div>
+      <DocsBreadcrumb />
+
+      {/* Hero */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="mb-12"
+      >
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-12 h-12 rounded-xl bg-[#FF6500] flex items-center justify-center shadow-lg shadow-[#FF6500]/20">
+            <BookOpen className="w-6 h-6 text-white" />
           </div>
+          <div>
+            <h1 className="text-3xl font-bold text-[#0B192C]">Documentation</h1>
+            <p className="text-[#1E3E62]/60">Learn how to build product tours</p>
+          </div>
+        </div>
+      </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF6500]/10 border border-[#FF6500]/20 mb-6"
+      {/* Introduction */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="prose prose-slate max-w-none mb-12"
+      >
+        <p className="text-lg text-[#1E3E62]/80 leading-relaxed">
+          WalkmanJS is a powerful, lightweight library for creating interactive product tours and onboarding flows.
+          With our visual builder, you can create engaging tours without writing any code.
+        </p>
+
+        <div className="not-prose mt-6 p-4 rounded-xl bg-[#FF6500]/5 border border-[#FF6500]/20">
+          <div className="flex items-start gap-3">
+            <Sparkles className="w-5 h-5 text-[#FF6500] mt-0.5 shrink-0" />
+            <div>
+              <p className="font-medium text-[#0B192C]">New to WalkmanJS?</p>
+              <p className="text-sm text-[#1E3E62]/70 mt-1">
+                Start with our{" "}
+                <Link href="/docs/quickstart" className="text-[#FF6500] hover:underline font-medium">
+                  Quick Start guide
+                </Link>{" "}
+                to create your first tour in minutes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Quick Links */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="mb-12"
+      >
+        <h2 className="text-xl font-semibold text-[#0B192C] mb-4">Get Started</h2>
+        <div className="grid gap-4 sm:grid-cols-3">
+          {quickLinks.map((link, index) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="group p-5 rounded-xl border border-[#1E3E62]/10 bg-white hover:border-[#FF6500]/30 hover:shadow-lg hover:shadow-[#FF6500]/5 transition-all"
             >
-              <BookOpen className="w-4 h-4 text-[#FF6500]" />
-              <span className="text-sm font-medium text-[#FF6500]">Documentation</span>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.1 * index }}
+              >
+                <div className={`w-10 h-10 rounded-lg ${link.color} flex items-center justify-center mb-3`}>
+                  <link.icon className="w-5 h-5 text-white" />
+                </div>
+                <h3 className="font-semibold text-[#0B192C] mb-1 group-hover:text-[#FF6500] transition-colors">
+                  {link.title}
+                </h3>
+                <p className="text-sm text-[#1E3E62]/60">{link.description}</p>
+                <div className="mt-3 flex items-center text-sm font-medium text-[#FF6500] opacity-0 group-hover:opacity-100 transition-opacity">
+                  Learn more
+                  <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </motion.div>
+            </Link>
+          ))}
+        </div>
+      </motion.section>
+
+      {/* Features */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="mb-12"
+      >
+        <h2 className="text-xl font-semibold text-[#0B192C] mb-4">What you can do</h2>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {features.map((feature, index) => (
+            <motion.div
+              key={feature}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: 0.05 * index }}
+              className="flex items-center gap-3 p-3 rounded-lg bg-white border border-[#1E3E62]/10"
+            >
+              <div className="w-6 h-6 rounded-full bg-[#FF6500]/10 flex items-center justify-center shrink-0">
+                <div className="w-2 h-2 rounded-full bg-[#FF6500]" />
+              </div>
+              <span className="text-sm text-[#1E3E62]/80">{feature}</span>
             </motion.div>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-[#0B192C]">
-              Learn to build <span className="text-[#FF6500]">product tours</span>
-            </h1>
-            <p className="text-lg text-[#1E3E62]/70 max-w-2xl mx-auto">
-              Create and deploy interactive product tours on your website in minutes.
-            </p>
-          </motion.div>
-        </section>
+          ))}
+        </div>
+      </motion.section>
 
-        {/* Quick Links */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-4"
-          >
-            {[
-              { title: "Quick Start", desc: "Get up and running in 5 minutes", icon: BookOpen },
-              { title: "CSS Selectors", desc: "Learn how to target elements", icon: Target },
-              { title: "API Reference", desc: "Programmatic tour control", icon: Code },
-            ].map((item) => (
-              <motion.div
-                key={item.title}
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="p-6 border border-[#1E3E62]/10 rounded-xl bg-white hover:border-[#FF6500]/30 hover:shadow-lg hover:shadow-[#FF6500]/5 transition-all cursor-pointer group"
-              >
-                <div className="w-10 h-10 rounded-lg bg-[#FF6500]/10 flex items-center justify-center mb-4 group-hover:bg-[#FF6500] transition-colors">
-                  <item.icon className="w-5 h-5 text-[#FF6500] group-hover:text-white transition-colors" />
-                </div>
-                <h3 className="font-semibold mb-1 text-[#0B192C]">{item.title}</h3>
-                <p className="text-sm text-[#1E3E62]/70">{item.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </section>
-
-        {/* Getting Started */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-12">
-            <h2 className="text-3xl font-bold tracking-tight mb-4 text-[#0B192C]">Getting Started</h2>
-            <p className="text-[#1E3E62]/70 max-w-3xl">
-              Follow these steps to create your first product tour. Each step includes a visual guide to help you
-              navigate the dashboard.
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="space-y-16"
-          >
-            {steps.map((step, index) => (
-              <motion.div
-                key={step.id}
-                variants={itemVariants}
-                className={`flex flex-col ${index % 2 === 1 ? "lg:flex-row-reverse" : "lg:flex-row"} gap-8 lg:gap-12 items-center`}
-              >
-                {/* Content */}
-                <div className="flex-1 space-y-4">
-                  <div className="flex items-center gap-3">
-                    <span className="flex items-center justify-center w-10 h-10 rounded-full bg-[#FF6500] text-white text-sm font-bold shadow-lg shadow-[#FF6500]/20">
-                      {step.id}
-                    </span>
-                    <step.icon className="w-5 h-5 text-[#1E3E62]/50" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-[#0B192C]">{step.title}</h3>
-                  <p className="text-[#1E3E62]/70 leading-relaxed">{step.description}</p>
-                </div>
-
-                {/* Image */}
-                <motion.div whileHover={{ scale: 1.02 }} className="flex-1 w-full">
-                  <div className="relative aspect-video rounded-xl overflow-hidden border border-[#1E3E62]/10 shadow-xl shadow-[#0B192C]/5">
-                    <Image
-                      src={step.image || "/placeholder.svg"}
-                      alt={step.title}
-                      fill
-                      className="object-cover object-top"
-                    />
-                  </div>
-                </motion.div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </section>
-
-        {/* Tips Section */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-[#1E3E62]/5 border border-[#1E3E62]/10 rounded-xl p-8"
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-lg bg-[#FF6500] flex items-center justify-center">
-                <Palette className="w-5 h-5 text-white" />
-              </div>
-              <h2 className="text-2xl font-bold text-[#0B192C]">Pro Tips</h2>
+      {/* Code Example */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+      >
+        <h2 className="text-xl font-semibold text-[#0B192C] mb-4">Installation</h2>
+        <div className="rounded-xl overflow-hidden border border-[#1E3E62]/10">
+          <div className="flex items-center gap-2 px-4 py-3 bg-[#0B192C] border-b border-[#1E3E62]/30">
+            <div className="flex gap-1.5">
+              <div className="w-3 h-3 rounded-full bg-[#FF6500]/60" />
+              <div className="w-3 h-3 rounded-full bg-[#1E3E62]" />
+              <div className="w-3 h-3 rounded-full bg-[#1E3E62]/50" />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[
-                {
-                  title: "Use Specific Selectors",
-                  desc: "Use IDs (#element) when possible for reliable targeting. Class selectors (.class) work too but may match multiple elements.",
-                },
-                {
-                  title: "Keep Steps Concise",
-                  desc: "Each step should focus on one action. Short, clear instructions lead to better completion rates.",
-                },
-                {
-                  title: "Test in Preview Mode",
-                  desc: "Always test your tour in Test Mode before going live. This won't affect your analytics data.",
-                },
-                {
-                  title: "Mobile Responsive",
-                  desc: "Tours automatically adjust for mobile devices. Test on different screen sizes for the best experience.",
-                },
-              ].map((tip) => (
-                <div key={tip.title} className="flex gap-3">
-                  <ChevronRight className="w-5 h-5 text-[#FF6500] shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="font-semibold mb-1 text-[#0B192C]">{tip.title}</h4>
-                    <p className="text-sm text-[#1E3E62]/70">{tip.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </section>
-
-        {/* Code Example */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="text-2xl font-bold mb-6 text-[#0B192C]">Installation Code</h2>
-            <div className="bg-[#0B192C] rounded-xl p-6 overflow-x-auto shadow-xl">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-3 h-3 rounded-full bg-[#FF6500]/60" />
-                <div className="w-3 h-3 rounded-full bg-[#1E3E62]" />
-                <div className="w-3 h-3 rounded-full bg-[#1E3E62]/50" />
-              </div>
-              <pre className="text-sm font-mono text-[#FBFBFB]">
-                <code>{`<!-- Add this script before the closing </body> tag -->
-<script 
-  src="https://widget.walkmanjs.com/tour.js" 
+            <span className="text-xs text-[#FBFBFB]/50 ml-2">HTML</span>
+          </div>
+          <div className="bg-[#0B192C] p-4 overflow-x-auto">
+            <pre className="text-sm font-mono text-[#FBFBFB]">
+              <code>{`<script 
+  src="https://widget.walkmanjs.com/tour.js"
   data-tour-id="YOUR_TOUR_ID"
+  data-api-key="YOUR_API_KEY"
 ></script>`}</code>
-              </pre>
-            </div>
-            <p className="text-sm text-[#1E3E62]/70 mt-4">
-              Replace YOUR_TOUR_ID with the ID from your Install tab. The script will automatically load and display
-              your tour based on your targeting rules.
-            </p>
-          </motion.div>
-        </section>
-      </main>
-
-      <Footer />
+            </pre>
+          </div>
+        </div>
+        <p className="text-sm text-[#1E3E62]/60 mt-3">
+          Add this script before the closing <code className="px-1.5 py-0.5 rounded bg-[#1E3E62]/10 text-[#0B192C] font-mono text-xs">&lt;/body&gt;</code> tag on your website.
+        </p>
+      </motion.section>
     </div>
   )
 }
