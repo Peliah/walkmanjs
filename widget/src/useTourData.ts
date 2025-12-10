@@ -1,7 +1,10 @@
-import { useState } from 'react'; // FIXED: Removed 'useEffect'
+import { useState, useEffect } from 'react';
 
-// --- DATA STRUCTURES (MATCHING THE DOCS) ---
+// --- REAL DATA IMPORTS ---
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api"; 
 
+// --- INTERFACES ---
 export interface Step {
   _id: string;
   tourId: string;
@@ -33,74 +36,48 @@ export interface TourConfig {
   steps: Step[];
 }
 
-// --- MOCK DATA ---
-const MOCK_DATA: TourConfig = {
-  _id: "demo-tour-123",
-  name: "Onboarding Demo",
-  status: "active",
-  theme: {
-    primaryColor: "#2563eb",
-    backgroundColor: "#ffffff",
-    textColor: "#1e293b",
-    borderRadius: 16,
-    overlayEnabled: true,
-    overlayOpacity: 0.5
-  },
-  targeting: {
-    urlMatchType: "contains",
-    urlPattern: "/",
-    frequency: "always"
-  },
-  steps: [
-    { _id: "s1", tourId: "t1", stepId: "step_1", order: 0, title: "👋 Welcome", content: "Start your journey here.", targetSelector: "#signup-btn", position: "bottom" },
-    { _id: "s2", tourId: "t1", stepId: "step_2", order: 1, title: "📊 Analytics", content: "Track your growth.", targetSelector: "#feature-section", position: "right" },
-    { _id: "s3", tourId: "t1", stepId: "step_3", order: 2, title: "💎 Pricing", content: "Choose a plan.", targetSelector: "#pricing-plan", position: "left" },
-    { _id: "s4", tourId: "t1", stepId: "step_4", order: 3, title: "⚙️ Settings", content: "Configure your profile.", targetSelector: "#settings-icon", position: "bottom" },
-    { _id: "s5", tourId: "t1", stepId: "step_5", order: 4, title: "❓ Support", content: "We are here to help.", targetSelector: "#help-btn", position: "top" }
-  ]
-};
+// --- HOOK ---
 
-// --- TEAM INSTRUCTIONS ---
-// 1. Uncomment Convex imports
-// 2. Uncomment 'useQuery', 'useEffect', and 'shouldShowTour' logic below
-// -------------------------
-
-// import { useQuery } from "convex/react";
-// import { api } from "../convex/_generated/api";
-
-// FIXED: Added underscores to arguments so TS doesn't complain they are unused
-export function useTourData(_tourId: string, _apiKey?: string) {
+export function useTourData(tourId: string, apiKey?: string) {
   
-  // FIXED: Removed 'setData' since we aren't using it in Mock Mode
-  const [data] = useState<TourConfig | null>(MOCK_DATA);
+  const [data, setData] = useState<TourConfig | null>(null);
 
-  // --- LOGIC: HELPER FUNCTIONS (Uncomment when switching to Real Data) ---
-  /*
+  // 1. VALIDATE API KEY (Security Layer)
+  // If apiKey is missing, we pass "skip" to avoid calling the backend unnecessarily.
+  // Note: Ensure 'api.apiKeys.validate' exists in your backend schema!
+  const isKeyValid = useQuery(api.apiKeys.validate, apiKey ? { key: apiKey } : "skip");
+
+  // 2. FETCH TOUR DATA
+  const realTour = useQuery(api.tours.get, { tourId: tourId as any });
+  const realSteps = useQuery(api.steps.list, { tourId: tourId as any });
+
+  // 3. TARGETING HELPER
   const shouldShowTour = (targeting: any, currentUrl: string) => {
     if (!targeting?.urlPattern) return true;
     if (targeting.urlMatchType === "contains") return currentUrl.includes(targeting.urlPattern);
-    return true;
+    return true; 
   };
-  */
 
-  // --- LOGIC: REAL DATA FETCHING (Uncomment when Backend is ready) ---
-  /*
-  const realTour = useQuery(api.tours.get, { tourId: _tourId });
-  const realSteps = useQuery(api.steps.list, { tourId: _tourId });
-
-  // Note: Add 'useEffect' back to imports above
-  // Note: Add 'setData' back to useState above
-  
   useEffect(() => {
+    // SECURITY CHECK: Only proceed if the API key returned TRUE
+    if (isKeyValid !== true) {
+        if (isKeyValid === false) console.error("WalkmanJS: Invalid API Key");
+        return; 
+    }
+
+    // DATA MERGE: Proceed only if we have both Tour and Steps
     if (realTour && realSteps) {
-       const fullConfig = { ...realTour, steps: realSteps };
+       // @ts-ignore: Ignoring strict type check for quick integration
+       const fullConfig: TourConfig = { 
+           ...realTour, 
+           steps: realSteps 
+       };
        
        if (shouldShowTour(fullConfig.targeting, window.location.href)) {
          setData(fullConfig);
        }
     }
-  }, [realTour, realSteps]);
-  */
+  }, [isKeyValid, realTour, realSteps]);
 
   return data;
 }
