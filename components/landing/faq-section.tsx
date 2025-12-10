@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { ChevronDown } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
 
 interface FAQItem {
   question: string
@@ -45,35 +46,49 @@ export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <section id="faq" className="py-20 px-6 bg-background">
+    <section id="wjs-faq-section" className="py-20 px-6 bg-[#FBFBFB]">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-4">Frequently Asked Questions</h2>
-          <p className="text-lg text-muted-foreground">Everything you need to know about our tour builder.</p>
+          <h2 className="text-4xl font-bold text-[#0B192C] mb-4">Frequently Asked Questions</h2>
+          <p className="text-lg text-[#1E3E62]/70">Everything you need to know about our tour builder.</p>
         </div>
 
         <div className="space-y-3">
           {faqItems.map((item, index) => (
             <div
               key={index}
-              className="border border-border rounded-lg overflow-hidden bg-card hover:border-primary/50 transition-colors"
+              className={`border rounded-lg overflow-hidden bg-white transition-all duration-300 ${
+                openIndex === index 
+                  ? "border-[#FF6500]/50 shadow-md shadow-[#FF6500]/5" 
+                  : "border-[#1E3E62]/10 hover:border-[#1E3E62]/30"
+              }`}
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-accent/50 transition-colors"
+                className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-[#1E3E62]/5 transition-colors"
               >
-                <span className="font-semibold text-foreground">{item.question}</span>
+                <span className="font-semibold text-[#0B192C]">{item.question}</span>
                 <ChevronDown
-                  className={`w-5 h-5 text-primary transition-transform duration-200 flex-shrink-0 ${
+                  className={`w-5 h-5 text-[#FF6500] transition-transform duration-300 flex-shrink-0 ${
                     openIndex === index ? "rotate-180" : ""
                   }`}
                 />
               </button>
-              {openIndex === index && (
-                <div className="px-6 py-4 bg-accent/30 border-t border-border">
-                  <p className="text-muted-foreground leading-relaxed">{item.answer}</p>
-                </div>
-              )}
+              <AnimatePresence>
+                {openIndex === index && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-6 py-4 bg-[#1E3E62]/5 border-t border-[#1E3E62]/10">
+                      <p className="text-[#1E3E62]/80 leading-relaxed">{item.answer}</p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           ))}
         </div>
