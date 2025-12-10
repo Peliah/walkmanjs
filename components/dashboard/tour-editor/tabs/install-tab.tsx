@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react"; // ⬅️ ADDED useEffect
 import { Copy, Check, RefreshCw } from "lucide-react";
 import { Doc } from "@/convex/_generated/dataModel";
 import { useApiKey } from "@/hooks/use-api-key";
@@ -18,8 +18,22 @@ export function InstallTab({ tour }: InstallTabProps) {
     const [copied, setCopied] = useState(false);
     const [copiedKey, setCopiedKey] = useState(false);
     const [testMode, setTestMode] = useState(false);
+    
+    // 1. ⬅️ ADDED STATE FOR DYNAMIC URL
+    const [widgetSrc, setWidgetSrc] = useState("https://widget.walkmanjs.com/tour.js");
+    
+    // 2. ⬅️ USE EFFECT TO SET THE CORRECT DOMAIN ONCE MOUNTED
+    useEffect(() => {
+        // We only run this on the client (which 'use client' helps with)
+        // This makes the script point to: http://localhost:3000/embed.js or https://app.vercel.app/embed.js
+        if (typeof window !== 'undefined') {
+            const origin = window.location.origin;
+            setWidgetSrc(`${origin}/embed.js`); 
+        }
+    }, []);
 
-    const embedCode = `<script src="https://widget.walkmanjs.com/tour.js" data-tour-id="${tour._id}" data-api-key="${apiKey?.key || "YOUR_API_KEY"}"></script>`;
+    // 3. ⬅️ UPDATED EMBED CODE TO USE THE DYNAMIC widgetSrc
+    const embedCode = `<script src="${widgetSrc}" data-tour-id="${tour._id}" data-api-key="${apiKey?.key || "YOUR_API_KEY"}"></script>`;
 
     const handleCopy = async (text: string, setCopiedState: (v: boolean) => void) => {
         await navigator.clipboard.writeText(text);
@@ -49,7 +63,8 @@ export function InstallTab({ tour }: InstallTabProps) {
                     <Label className="text-[#0B192C]">Embed Code</Label>
                     <div className="relative">
                         <pre className="overflow-x-auto rounded-lg bg-[#0B192C] p-4 text-sm text-[#FBFBFB]">
-                            <code>{embedCode}</code>
+                            {/* The displayed code is now correct */}
+                            <code>{embedCode}</code> 
                         </pre>
                         <Button
                             size="icon"
@@ -145,4 +160,3 @@ export function InstallTab({ tour }: InstallTabProps) {
         </div>
     );
 }
-

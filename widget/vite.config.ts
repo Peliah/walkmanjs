@@ -5,16 +5,29 @@ import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 export default defineConfig({
   plugins: [
     react(),
-    cssInjectedByJsPlugin(), // Merges CSS into the JS file
+    cssInjectedByJsPlugin(),
   ],
   build: {
-    cssCodeSplit: false,
+    // Ensure this is not set to prevent issues with css-injected-by-js
+    // cssCodeSplit: false, 
+    
     rollupOptions: {
+      // ⬅️ CRITICAL FIX: Externalize React and React-DOM
+      external: ['react', 'react-dom', 'framer-motion'], // Add framer-motion too, as it uses hooks
+      
       output: {
         manualChunks: undefined,
-        entryFileNames: 'embed.js', // The final output name
-        format: 'iife', // Safe format for browsers
-        name: 'TourWidget',
+        entryFileNames: 'embed.js', 
+        
+        // This is necessary to access React/ReactDOM from the global environment
+        globals: {
+            react: 'React',
+            'react-dom': 'ReactDOM',
+            'framer-motion': 'FramerMotion', // Assuming global access
+        },
+        
+        // Remove 'format: iife' to avoid forcing IIFE when using externalization
+        // format: 'iife', 
       },
     },
   },

@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
-  },
+  "dev": "next dev",
+  "build": "cd widget && npm install && npm run build && cp dist/embed.js ../public/embed.js && cd .. && next build",
+  "start": "next start",
+  "lint": "next lint"
+},
   "dependencies": {
     "@clerk/nextjs": "^6.36.1",
     "@hookform/resolvers": "^5.2.2",
