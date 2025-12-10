@@ -30,7 +30,7 @@ export function DemoSection() {
   }
 
   return (
-    <section id="try-demo" className="py-24 bg-muted/30">
+    <section id="try-demo" className="py-24 bg-[#1E3E62]/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -39,8 +39,8 @@ export function DemoSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">Try the Demo</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 text-[#0B192C]">Try the Demo</h2>
+          <p className="text-lg text-[#1E3E62]/70 max-w-2xl mx-auto">
             Experience how Walkmanjs works with this interactive demonstration.
           </p>
         </motion.div>
@@ -52,13 +52,13 @@ export function DemoSection() {
           transition={{ duration: 0.6 }}
           className="max-w-3xl mx-auto"
         >
-          <div className="relative rounded-xl border border-border bg-background shadow-xl overflow-hidden">
+          <div className="relative rounded-xl border border-[#1E3E62]/10 bg-white shadow-xl shadow-[#0B192C]/5 overflow-hidden">
             {/* Browser chrome */}
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-muted/50">
+            <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1E3E62]/10 bg-[#FBFBFB]">
               <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-foreground/20" />
-                <div className="w-3 h-3 rounded-full bg-foreground/20" />
-                <div className="w-3 h-3 rounded-full bg-foreground/20" />
+                <div className="w-3 h-3 rounded-full bg-[#FF6500]/60" />
+                <div className="w-3 h-3 rounded-full bg-[#1E3E62]/30" />
+                <div className="w-3 h-3 rounded-full bg-[#1E3E62]/20" />
               </div>
             </div>
 
@@ -68,8 +68,10 @@ export function DemoSection() {
                 {["Dashboard", "Settings", "Analytics", "Profile", "Reports", "Help"].map((item, i) => (
                   <div
                     key={item}
-                    className={`p-4 rounded-lg border border-border text-center text-sm font-medium transition-colors ${
-                      i === currentStep && currentStep < 5 ? "bg-primary text-primary-foreground" : "bg-secondary"
+                    className={`p-4 rounded-lg border text-center text-sm font-medium transition-all duration-300 ${
+                      i === currentStep && currentStep < 5 
+                        ? "bg-[#FF6500] text-white border-[#FF6500] shadow-lg shadow-[#FF6500]/20" 
+                        : "bg-[#FBFBFB] text-[#0B192C] border-[#1E3E62]/10 hover:border-[#1E3E62]/30"
                     }`}
                   >
                     {item}
@@ -83,33 +85,43 @@ export function DemoSection() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="absolute bottom-8 left-1/2 -translate-x-1/2 w-80 rounded-lg border border-border bg-card p-4 shadow-lg"
+                className="absolute bottom-8 left-1/2 -translate-x-1/2 w-80 rounded-lg border border-[#1E3E62]/10 bg-white p-4 shadow-xl"
               >
                 <div className="flex items-center gap-2 mb-2">
-                  <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-xs font-bold">
+                  <div className="w-6 h-6 rounded-full bg-[#FF6500] flex items-center justify-center text-white text-xs font-bold">
                     {tourSteps[currentStep].id}
                   </div>
-                  <span className="text-sm font-semibold">{tourSteps[currentStep].title}</span>
+                  <span className="text-sm font-semibold text-[#0B192C]">{tourSteps[currentStep].title}</span>
                 </div>
-                <p className="text-sm text-muted-foreground mb-4">{tourSteps[currentStep].content}</p>
+                <p className="text-sm text-[#1E3E62]/70 mb-4">{tourSteps[currentStep].content}</p>
                 <div className="flex justify-between items-center">
-                  <span className="text-xs text-muted-foreground">
+                  <span className="text-xs text-[#1E3E62]/50">
                     Step {currentStep + 1} of {tourSteps.length}
                   </span>
                   <div className="flex gap-2">
-                    <Button size="sm" variant="outline" onClick={prevStep} disabled={currentStep === 0}>
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      onClick={prevStep} 
+                      disabled={currentStep === 0}
+                      className="border-[#1E3E62]/20 text-[#0B192C] hover:bg-[#1E3E62]/5"
+                    >
                       Back
                     </Button>
-                    <Button size="sm" onClick={nextStep} className="bg-primary hover:bg-primary/90">
+                    <Button 
+                      size="sm" 
+                      onClick={nextStep} 
+                      className="bg-[#FF6500] hover:bg-[#FF6500]/90 text-white"
+                    >
                       {currentStep === tourSteps.length - 1 ? "Restart" : "Next"}
                     </Button>
                   </div>
                 </div>
 
                 {/* Progress bar */}
-                <div className="mt-4 h-1 bg-muted rounded-full overflow-hidden">
+                <div className="mt-4 h-1 bg-[#1E3E62]/10 rounded-full overflow-hidden">
                   <motion.div
-                    className="h-full bg-primary"
+                    className="h-full bg-[#FF6500]"
                     initial={{ width: 0 }}
                     animate={{ width: `${((currentStep + 1) / tourSteps.length) * 100}%` }}
                     transition={{ duration: 0.3 }}
