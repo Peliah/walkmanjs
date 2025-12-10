@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { LogOut, User } from 'lucide-react';
+import { LayoutDashboard, LogOut, User } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -29,7 +29,7 @@ export function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-[#1E3E62]/20 bg-[#FBFBFB]">
+    <header className="sticky top-0 z-50 w-full border-b border-[#1E3E62]/20 bg-[#FBFBFB] font-sans">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
@@ -46,70 +46,82 @@ export function Navbar() {
           {!isLoaded ? (
             <div className="h-9 w-20 animate-pulse rounded-md bg-[#1E3E62]/10" />
           ) : isSignedIn && user ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className="h-9 w-9 rounded-full p-0 hover:bg-[#1E3E62]/10"
-                >
-                  <Avatar className="h-9 w-9">
-                    <AvatarImage
-                      src={user.imageUrl}
-                      alt={user.fullName || 'User'}
-                    />
-                    <AvatarFallback className="bg-[#1E3E62] text-sm font-medium text-white">
-                      {getInitials(user.fullName)}
-                    </AvatarFallback>
-                  </Avatar>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                align="end"
-                className="w-56 rounded-lg border-[#1E3E62]/20 bg-white shadow-lg"
+            <>
+              <Button
+                asChild
+                variant="ghost"
+                className="h-9 px-4 text-sm font-medium text-[#0B192C] hover:bg-[#1E3E62]/10"
               >
-                <div className="flex items-center gap-3 border-b border-[#1E3E62]/10 p-3">
-                  <Avatar className="h-10 w-10">
-                    <AvatarImage
-                      src={user.imageUrl}
-                      alt={user.fullName || 'User'}
-                    />
-                    <AvatarFallback className="bg-[#1E3E62] text-sm font-medium text-white">
-                      {getInitials(user.fullName)}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="flex flex-col overflow-hidden">
-                    <span className="truncate text-sm font-medium text-[#0B192C]">
-                      {user.fullName || 'User'}
-                    </span>
-                    <span className="truncate text-xs text-[#1E3E62]/60">
-                      {user.primaryEmailAddress?.emailAddress}
-                    </span>
+                <Link href="/dashboard">
+                  <LayoutDashboard className="mr-2 h-4 w-4" />
+                  Dashboard
+                </Link>
+              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    className="h-9 w-9 rounded-full p-0 hover:bg-[#1E3E62]/10"
+                  >
+                    <Avatar className="h-9 w-9">
+                      <AvatarImage
+                        src={user.imageUrl}
+                        alt={user.username || 'User'}
+                      />
+                      <AvatarFallback className="bg-[#1E3E62] text-sm font-medium text-white">
+                        {getInitials(user.fullName)}
+                      </AvatarFallback>
+                    </Avatar>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  align="end"
+                  className="w-56 rounded-lg border-[#1E3E62]/20 bg-white shadow-lg"
+                >
+                  <div className="flex items-center gap-3 border-b border-[#1E3E62]/10 p-3">
+                    <Avatar className="h-10 w-10">
+                      <AvatarImage
+                        src={user.imageUrl}
+                        alt={user.fullName || 'User'}
+                      />
+                      <AvatarFallback className="bg-[#1E3E62] text-sm font-medium text-white">
+                        {getInitials(user.fullName)}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="flex flex-col overflow-hidden">
+                      <span className="truncate text-sm font-medium text-[#0B192C]">
+                        {user.fullName || 'User'}
+                      </span>
+                      <span className="truncate text-xs text-[#1E3E62]/60">
+                        {user.primaryEmailAddress?.emailAddress}
+                      </span>
+                    </div>
                   </div>
-                </div>
 
-                <div className="p-1">
-                  <DropdownMenuItem
-                    asChild
-                    className="cursor-pointer rounded-md text-[#0B192C] focus:bg-[#1E3E62]/10"
-                  >
-                    <Link href="/profile" className="flex items-center gap-2">
-                      <User className="h-4 w-4 text-[#1E3E62]" />
-                      Profile
-                    </Link>
-                  </DropdownMenuItem>
+                  <div className="p-1">
+                    <DropdownMenuItem
+                      asChild
+                      className="cursor-pointer rounded-md text-[#0B192C] focus:bg-[#1E3E62]/10"
+                    >
+                      <Link href="/profile" className="flex items-center gap-2">
+                        <User className="h-4 w-4 text-[#1E3E62]" />
+                        Profile
+                      </Link>
+                    </DropdownMenuItem>
 
-                  <DropdownMenuSeparator className="bg-[#1E3E62]/10" />
+                    <DropdownMenuSeparator className="bg-[#1E3E62]/10" />
 
-                  <DropdownMenuItem
-                    onClick={() => signOut()}
-                    className="cursor-pointer rounded-md text-red-600 focus:bg-red-50 focus:text-red-600"
-                  >
-                    <LogOut className="mr-2 h-4 w-4" />
-                    Sign out
-                  </DropdownMenuItem>
-                </div>
-              </DropdownMenuContent>
-            </DropdownMenu>
+                    <DropdownMenuItem
+                      onClick={() => signOut()}
+                      className="cursor-pointer rounded-md text-red-600 focus:bg-red-50 focus:text-red-600"
+                    >
+                      <LogOut className="mr-2 h-4 w-4" />
+                      Sign out
+                    </DropdownMenuItem>
+                  </div>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </>
           ) : (
             <div className="flex items-center gap-2">
               <Button
