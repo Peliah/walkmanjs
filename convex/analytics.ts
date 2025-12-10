@@ -126,7 +126,8 @@ export const getRecentActivity = query({
       .withIndex("by_user", (q) => q.eq("userId", user._id))
       .collect();
 
-    const tourMap = new Map(tours.map((t) => [t._id, t]));
+    // @ts-ignore
+    const _tourMap = new Map(tours.map((t) => [t._id, t]));
     const allEvents: Array<{
       _id: string;
       _creationTime: number;
