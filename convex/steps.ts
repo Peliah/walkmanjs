@@ -136,11 +136,11 @@ export const bulkImport = mutation({
     // Create new steps from the imported JSON
     const createdSteps = [];
     const timestamp = Date.now();
-    
+
     for (let i = 0; i < sortedSteps.length; i++) {
       const step = sortedSteps[i];
       const stepId = `step_${timestamp}_${i}`;
-      
+
       const newStepId = await ctx.db.insert("steps", {
         tourId: args.tourId,
         stepId,
@@ -150,7 +150,7 @@ export const bulkImport = mutation({
         position: step.position,
         order: step.order,
       });
-      
+
       createdSteps.push(newStepId);
     }
 
