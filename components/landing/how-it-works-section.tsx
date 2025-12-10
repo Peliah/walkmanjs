@@ -7,7 +7,7 @@ const steps = [
     number: "01",
     title: "Install the Script",
     description: "Copy and paste our lightweight script into your website's HTML head section.",
-    code: '<script src="https://cdn.tourflow.io/embed.js" data-key="YOUR_KEY"></script>',
+    code: '<script src="https://cdn.Walkmanjs.io/embed.js" data-key="YOUR_KEY"></script>',
   },
   {
     number: "02",

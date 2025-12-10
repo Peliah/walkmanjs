@@ -41,7 +41,7 @@ export function DemoSection() {
         >
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">Try the Demo</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Experience how TourFlow works with this interactive demonstration.
+            Experience how Walkmanjs works with this interactive demonstration.
           </p>
         </motion.div>
 

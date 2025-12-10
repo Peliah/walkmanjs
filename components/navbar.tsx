@@ -30,12 +30,9 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[#1E3E62]/20 bg-[#FBFBFB] font-sans">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+      <div className="mx-auto flex h-16  items-center justify-between px-6">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-[#FF6500]">
-            <span className="text-sm font-bold text-white">W</span>
-          </div>
+        <Link href="/" className="flex items-center gap-2 lg:pl-8">
           <span className="text-lg font-semibold text-[#0B192C]">
             WalkmanJS
           </span>
@@ -61,7 +58,7 @@ export function Navbar() {
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="ghost"
-                    className="h-9 w-9 rounded-full p-0 hover:bg-[#1E3E62]/10"
+                    className="cursor-pointer h-9 w-9 rounded-full p-0 hover:bg-[#1E3E62]/10"
                   >
                     <Avatar className="h-9 w-9">
                       <AvatarImage
@@ -78,7 +75,7 @@ export function Navbar() {
                   align="end"
                   className="w-56 rounded-lg border-[#1E3E62]/20 bg-white shadow-lg"
                 >
-                  <div className="flex items-center gap-3 border-b border-[#1E3E62]/10 p-3">
+                  <div className="flex items-center gap-3 border-b border-[#1E3E62]/10 p-3 cursor-pointer">
                     <Avatar className="h-10 w-10">
                       <AvatarImage
                         src={user.imageUrl}
@@ -103,8 +100,8 @@ export function Navbar() {
                       asChild
                       className="cursor-pointer rounded-md text-[#0B192C] focus:bg-[#1E3E62]/10"
                     >
-                      <Link href="/profile" className="flex items-center gap-2">
-                        <User className="h-4 w-4 text-[#1E3E62]" />
+                      <Link href="/profile" className="cursor pointer flex items-center gap-2">
+                        <User className="h-4 w-4 text-[#1E3E62] cursor-pointer" />
                         Profile
                       </Link>
                     </DropdownMenuItem>
@@ -127,13 +124,13 @@ export function Navbar() {
               <Button
                 variant="ghost"
                 onClick={openLogin}
-                className="h-9 px-4 text-sm font-medium text-[#0B192C] hover:bg-[#1E3E62]/10"
+                className="cursor-pointer h-9 px-4 text-sm font-medium text-[#0B192C] hover:bg-[#1E3E62]/10"
               >
                 Sign In
               </Button>
               <Button
                 onClick={openSignup}
-                className="h-9 rounded-md bg-[#FF6500] px-5 text-sm font-medium text-white hover:bg-[#FF6500]/90"
+                className="cursor-pointer h-9 rounded-md bg-[#FF6500] px-5 text-sm font-medium text-white hover:bg-[#FF6500]/90"
               >
                 Get Started
               </Button>
