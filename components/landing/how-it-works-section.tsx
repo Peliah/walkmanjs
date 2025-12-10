@@ -25,7 +25,7 @@ const steps = [
 
 export function HowItWorksSection() {
   return (
-    <section id="how-it-works" className="py-24 bg-[#FBFBFB]">
+    <section className="py-24 bg-[#FBFBFB]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -43,6 +43,7 @@ export function HowItWorksSection() {
         <div className="space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-8">
           {steps.map((step, index) => (
             <motion.div
+              id="how-it-works"
               key={step.number}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
