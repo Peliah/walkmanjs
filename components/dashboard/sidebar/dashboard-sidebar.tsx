@@ -42,7 +42,7 @@ export function DashboardSidebar() {
     };
 
     return (
-        <Sidebar collapsible="icon" className="border-r border-[#1E3E62]/10">
+        <Sidebar collapsible="icon" className="z-[60] border-r border-[#1E3E62]/10">
             <SidebarHeader className="border-b border-[#1E3E62]/10 px-4 py-4">
                 <Link href="/" className="flex items-center gap-3">
                     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[#FF6500]">
