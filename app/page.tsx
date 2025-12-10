@@ -20,7 +20,6 @@ export default function HomePage() {
       </main>
       <Footer />
 
-      {/* WalkmanJS Tour Widget */}
       <Script
         src="https://widget-walkman.netlify.app/tour.iife.js"
         data-tour-id="jh7b39hwp8vec3rfg8w64fe2mx7x0gns"
