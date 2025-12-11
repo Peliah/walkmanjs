@@ -38,6 +38,34 @@ export function Navbar() {
           </span>
         </Link>
 
+        {/* Navigation Links */}
+        <nav className="hidden md:flex items-center gap-6">
+          <Link
+            href="/features"
+            className="text-sm font-medium text-[#1E3E62]/70 hover:text-[#0B192C] transition-colors"
+          >
+            Features
+          </Link>
+          <Link
+            href="/docs"
+            className="text-sm font-medium text-[#1E3E62]/70 hover:text-[#0B192C] transition-colors"
+          >
+            Docs
+          </Link>
+          <Link
+            href="/about"
+            className="text-sm font-medium text-[#1E3E62]/70 hover:text-[#0B192C] transition-colors"
+          >
+            About
+          </Link>
+          <Link
+            href="/contact"
+            className="text-sm font-medium text-[#1E3E62]/70 hover:text-[#0B192C] transition-colors"
+          >
+            Contact
+          </Link>
+        </nav>
+
         {/* Right Section */}
         <nav className="flex items-center gap-3">
           {!isLoaded ? (

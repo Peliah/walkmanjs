@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 const footerLinks = {
   product: [
     { label: "Documentation", href: "/docs" },
-    { label: "Features", href: "#feature-section" },
+    { label: "Features", href: "/features" },
     { label: "Pricing", href: "#pricing" },
     { label: "Changelog", href: "/changelog" },
   ],
@@ -63,7 +63,7 @@ export function Footer() {
                 </svg>
               </a>
               <a
-                href="https://github.com/walkmanjs"
+                href="https://github.com/peliah/walkmanjs"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 rounded-lg bg-[#1E3E62]/50 flex items-center justify-center text-[#FBFBFB]/60 hover:bg-[#FF6500] hover:text-white transition-colors"
