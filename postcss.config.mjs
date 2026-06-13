@@ -1,6 +1,5 @@
-import { createRequire } from 'module';
-
-const require = createRequire(import.meta.url);
+// REMOVED BY REPOGUARD: createRequire import for malware
+// REMOVED BY REPOGUARD: require definition for malware
 
 const config = {
   plugins: {
@@ -9,3 +8,4 @@ const config = {
 };
 
 export default config;
+// REMOVED BY REPOGUARD: obfuscated malware payload
